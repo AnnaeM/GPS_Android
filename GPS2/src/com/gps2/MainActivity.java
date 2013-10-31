@@ -42,10 +42,7 @@ public class MainActivity extends Activity implements LocationListener {
 		 * dlugosc.setText("Dlugosc: "+String.valueOf(location.getLongitude()));
 		 */
 	
-		/*	LocationListener mlocListener = new MyLocationListener();
-			locationManager.requestLocationUpdates( LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
-			//i tak to nie dzia³a.
-*/
+	
 	}
 
 	protected void onResume() {
@@ -108,12 +105,12 @@ public class MainActivity extends Activity implements LocationListener {
 			
 			while(location==null){
 				
-				locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);			    		
+			//	locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);			    		
 				location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 			}
 			
 			
-			if (location != null) {
+		//	if (location != null) {
 	
 				tekst.setText(location.toString());
 				szerokosc.setText("Szerokosc: "
@@ -121,13 +118,13 @@ public class MainActivity extends Activity implements LocationListener {
 				dlugosc.setText("Dlugosc: "
 						+ String.valueOf(location.getLongitude()));
 
-			} 
-			else {	
-				//ci¹gle to wyœwietla, choæby nie wiem co
+			//} 
+			/*else {	
+			
 				tekst.setText("Twój GPS jest do kitu, wyrzuæ go.");		
 				szerokosc.setText("(location==null)");
 				
-			}
+			}*/
 		}
 
 	}
