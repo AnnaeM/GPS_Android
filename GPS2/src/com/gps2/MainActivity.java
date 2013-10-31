@@ -91,13 +91,26 @@ public class MainActivity extends Activity implements LocationListener {
 
 			 getSystemService(Context.LOCATION_SERVICE);
 			
-			 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);		
+			locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);		
 	    		
-			Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+			//Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
 			TextView tekst = (TextView) this.findViewById(R.id.textView1);
 			TextView szerokosc = (TextView) this.findViewById(R.id.szerokosc);
 			TextView dlugosc = (TextView) this.findViewById(R.id.dlugosc);
+			
+			szerokosc.setText("");
+			dlugosc.setText("");
+			
+			tekst.setText("Czekaj, pobieranie danych GPS...");
+			
+			Location location=null;
+			
+			while(location==null){
+				
+				locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);			    		
+				location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+			}
 			
 			
 			if (location != null) {
@@ -108,11 +121,12 @@ public class MainActivity extends Activity implements LocationListener {
 				dlugosc.setText("Dlugosc: "
 						+ String.valueOf(location.getLongitude()));
 
-			} else {	//ci¹gle to wyœwietla, choæby nie wiem co
-				
+			} 
+			else {	
+				//ci¹gle to wyœwietla, choæby nie wiem co
 				tekst.setText("Twój GPS jest do kitu, wyrzuæ go.");		
 				szerokosc.setText("(location==null)");
-				dlugosc.setText("");
+				
 			}
 		}
 
